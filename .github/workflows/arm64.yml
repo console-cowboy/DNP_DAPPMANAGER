@@ -1,0 +1,14 @@
+name: Test ARM64 builds
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Enable multi-arch binaries
+        run: docker run --rm --privileged linuxkit/binfmt:v0.8
+
+      - name: Build for ARM64
+        run: |
+          cp ./build/Dockerfile .
+          docker build --platform arm64  --pull -t dappmanager.dnp.dappnode.eth:ui  .
