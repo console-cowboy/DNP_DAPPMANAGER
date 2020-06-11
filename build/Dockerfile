@@ -55,6 +55,7 @@ WORKDIR /usr/src/app
 
 # Copy and install deps first to cache
 COPY build/ui/package.json build/ui/yarn.lock ./
+RUN apk add python2 build-base
 RUN yarn --production
 COPY build/ui .
 RUN yarn generate

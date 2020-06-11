@@ -19,8 +19,7 @@ jobs:
           sudo systemctl restart docker
 
       - name: Enable multi-arch binaries
-        run: |
-          docker run --rm --privileged linuxkit/binfmt:v0.8
+        run: docker run --rm --privileged linuxkit/binfmt:v0.8
 
       - name: Build for ARM64
         run: |
