@@ -1,5 +1,11 @@
 name: Test ARM64 builds
 
+on:
+  pull_request:
+    branches: arm64-actions
+  push:
+    branches: arm64-actions
+
 jobs:
   build:
     runs-on: ubuntu-latest
