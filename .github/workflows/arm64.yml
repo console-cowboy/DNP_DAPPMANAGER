@@ -11,8 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Enable experimental docker features
+        run: |
+          sudo rm /etc/docker/daemon.json
+          echo '{"experimental": true}' | sudo tee -a /etc/docker/daemon.json
+          sudo systemctl restart docker
+
       - name: Enable multi-arch binaries
-        run: docker run --rm --privileged linuxkit/binfmt:v0.8
+        run: |
+          docker run --rm --privileged linuxkit/binfmt:v0.8
 
       - name: Build for ARM64
         run: |
